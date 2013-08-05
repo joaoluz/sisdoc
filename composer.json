@@ -1,10 +1,13 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "fabricateste/sisdoc",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "Sistema gerenciador de documentos",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { 
+        	"": "src/",
+        	"abstraction":"lib/abstractLayer/",
+    	 }
     },
     "require": {
         "php": ">=5.3.3",

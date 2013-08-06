@@ -5,7 +5,6 @@ namespace Modules\LoginBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 /**
  * @Route("/login")
  * @Template()
@@ -13,11 +12,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class LoginController extends Controller
 {
     /**
-     * @Route("/teste/{name}")
+     * @Route("/teste")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
+    	var_dump($this->get('Modules.LoginBusiness')->teste());die;
         return array('name' => $name);
     }
 }

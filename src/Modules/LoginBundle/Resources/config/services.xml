@@ -6,7 +6,7 @@
 
 
     <services>
-        <service id="loginBusiness" class="Modules/LoginBundle/business/loginBusiness">
+        <service id="Modules.LoginBusiness" class="Modules\LoginBundle\Business\LoginBusiness">
             <argument type="service" id="service_container"/>
         </service>
     </services>

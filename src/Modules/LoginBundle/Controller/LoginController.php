@@ -17,7 +17,8 @@ class LoginController extends Controller
      */
     public function indexAction()
     {
-    	var_dump($this->get('Modules.LoginBusiness')->teste());die;
+    	$a = $this->get('Modules.LoginBusiness')->pesquisa();
+    	var_dump($a);die;
         return array('name' => $name);
     }
 }

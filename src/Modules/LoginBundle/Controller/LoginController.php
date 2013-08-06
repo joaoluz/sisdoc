@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class LoginController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/teste/{name}")
      * @Template()
      */
     public function indexAction($name)

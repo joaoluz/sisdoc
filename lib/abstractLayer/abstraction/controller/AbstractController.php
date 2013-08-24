@@ -13,7 +13,7 @@ abstract class AbstractController extends Controller
 	public function getAllParams()
 	{
 		$request = $this->get('request');
-		return current($request->request);
+		return array_merge(current($request->request),current($request->query));
 	}
 	
 	public function getParam($id)

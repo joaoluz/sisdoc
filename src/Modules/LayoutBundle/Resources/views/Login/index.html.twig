@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app ng-controller="loginCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Entrar no Sistema </title>
+      {% block stylesheets %}
+          <link href="{{ asset('bundles/moduleslayout/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+          <link href="{{ asset('bundles/moduleslayout/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+          <link href="{{ asset('bundles/moduleslayout/css/index.css') }}" type="text/css" rel="stylesheet" />
+      {% endblock %}
+      {% block javascripts%}
+          {#{% javascripts '@ModulesLayoutBundle/Resources/public/js/' %}#}
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/jquery/jquery.js') }}"></script>
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular.js') }}"></script>
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-cookies.js') }}"></script>
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-resource.js') }}"></script>
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-sanitize.js') }}"></script>
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/login/login.js') }}"></script>
+          {#{% endjavascripts %}#}
+      {% endblock %}
+  </head>
+
+  <body>
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Entrar no Sistema</h2>
+        <input type="text" class="form-control">
+        <input type="password" class="form-control">
+        <label class="checkbox">
+          <input type="checkbox"> Lembre-me
+        </label>
+        <button class="btn btn-large btn-primary btn-block" type="button" ng-click="logar()">Logar</button>
+      </form>
+
+    </div> <!-- /container -->
+  </body>
+</html>

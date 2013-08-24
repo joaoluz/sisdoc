@@ -1,5 +1,4 @@
-modules_login:
-    resource: "@ModulesLoginBundle/Controller/"
+modules_layout:
+    resource: "@ModulesLayoutBundle/Controller/"
     type:     annotation
     prefix:   /
-

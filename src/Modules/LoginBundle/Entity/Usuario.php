@@ -24,6 +24,36 @@ class Usuario
      */
     private $cpf;
 
+    /**
+     * @var string $email
+     *
+     * @ORM\Column(name="email", type="string")
+     */
+    private $email;
+
+
+    /**
+     * @var string $senha
+     *
+     * @ORM\Column(name="senha", type="string")
+     */
+    private $senha;
+
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
     public function getIdUsuario()
     {

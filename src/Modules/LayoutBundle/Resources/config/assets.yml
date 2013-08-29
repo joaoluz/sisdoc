@@ -54,6 +54,6 @@ groups:
 
       - bundles/moduleslayout/bootstrap/jquery-1.7.2.min.js
 
-
+      - bundles/fosjsrouting/js/router.js
 
 

@@ -13,12 +13,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class LoginController extends AbstractController
 {
     /**
-     * @Route("/logar", name="logar")
+     * @Route("/logar", name="logar", options={"expose"=true})
      */
     public function logarAction()
     {
-        $params = $this->getAllParams();
-        var_dump($params);die;
+        $params = $this->getRequestJson();
         $loginBusiness = $this->get("ModulesLogin.LoginBusiness");
         $loginBusiness->logar($params);
         return array();

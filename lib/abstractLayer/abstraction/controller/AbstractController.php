@@ -6,10 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 abstract class AbstractController extends Controller
 {
-	public function indexAction()
-	{		
-	}
-	
 	public function getAllParams()
 	{
 		$request = $this->get('request');

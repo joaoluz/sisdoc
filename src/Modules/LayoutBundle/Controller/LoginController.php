@@ -6,6 +6,7 @@ use abstraction\controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/login")
@@ -18,9 +19,11 @@ class LoginController extends AbstractController
     public function logarAction()
     {
         $params = $this->getRequestJson();
-        $loginBusiness = $this->get("ModulesLogin.LoginBusiness");
-        $loginBusiness->logar($params);
-        return array();
+
+        $loginBusiness = $this->get("LoginBusiness");
+        $retorno = $loginBusiness->logar($params);
+
+        return new Response(json_encode($retorno));
     }
 
     /**

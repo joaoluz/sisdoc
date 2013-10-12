@@ -7,27 +7,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-/**
- * @Route("/login")
- */
-class LoginController extends AbstractController
+class HomeController extends AbstractController
 {
     /**
-     * @Route("/logar", name="logar", options={"expose"=true})
-     */
-    public function logarAction()
-    {
-        $params = $this->getRequestJson();
-        $loginBusiness = $this->get("LoginBusiness");
-        $retorno = $loginBusiness->logar($params);
-    }
-
-    /**
-     * @Route("/")
+     * @Route("/internal/", name="Home", options={"expose"=true})
      * @Template()
      */
     public function indexAction()
     {
+
         return array();
     }
+
+    /**
+     * @Route("/", name="start", options={"expose"=true})
+     */
+    public function startPageAction()
+    {
+        return $this->redirect($this->generateUrl("Home"));
+    }
+
 }

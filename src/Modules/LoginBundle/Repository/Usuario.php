@@ -10,14 +10,16 @@ class Usuario extends EntityRepository
     public function logar($params)
     {
         $queryBuilder =  $this->_em->createQueryBuilder()
-                              ->select('u.idUsuario')
+                              ->select('u')
                               ->from('ModulesLoginBundle:Usuario','u')
                               ->where('u.cpf = :cpf')
                               ->andWhere('u.senha = :senha')
                               ->setParameter('cpf',$params['cpf'])
                               ->setParameter('senha',$params['senha']);
 
-        return $queryBuilder->getQuery()->execute();
+        $return = $queryBuilder->getQuery()->execute();
+
+        return current($return);
     }
 
 }

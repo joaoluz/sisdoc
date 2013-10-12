@@ -27,6 +27,13 @@ class LoginBusiness extends AbstractBusiness
     public function logar($params)
     {
         $em = $this->container->get('doctrine')->getEntityManager();
-        return $em->getRepository('ModulesLoginBundle:Usuario')->logar($params);
+
+        $result = $em->getRepository('ModulesLoginBundle:Usuario')->logar($params);
+        $retorno["success"] = 0;
+        if (is_object($result)) {
+            $retorno["success"] =  1;
+        }
+
+        return $retorno;
     }
 }

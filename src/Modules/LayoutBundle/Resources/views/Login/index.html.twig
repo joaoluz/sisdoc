@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" ng-app ng-controller="loginCtrl">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Entrar no Sistema </title>
+    <title>Entrar no Sistema</title>
       {% block stylesheets %}
           <link href="{{ asset('bundles/moduleslayout/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
-          <link href="{{ asset('bundles/moduleslayout/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
-          <link href="{{ asset('bundles/moduleslayout/css/index.css') }}" type="text/css" rel="stylesheet" />
+          <link href="{{ asset('bundles/moduleslayout/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet" />
+          <link href="{{ asset('bundles/moduleslayout/css/estilo.css') }}" type="text/css" rel="stylesheet" />
+          <link href="{{ asset('bundles/moduleslayout/css/signin.css') }}" type="text/css" rel="stylesheet" />
       {% endblock %}
       {% block javascripts%}
           <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/jquery/jquery.js') }}"></script>
           <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular.js') }}"></script>
-          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-cookies.js') }}"></script>
-          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-resource.js') }}"></script>
-          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-sanitize.js') }}"></script>
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-scenario.js') }}"></script>
           <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+          <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/comum/single_page.js') }}"></script>
           <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/login/login.js') }}"></script>
 
           <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
@@ -26,16 +22,17 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container" ng-app="login" ng-controller="loginCtrl">
 
       <form class="form-signin">
         <h2 class="form-signin-heading">Entrar no Sistema</h2>
-        <input type="text" ng-model="cpf" class="form-control">
-        <input type="password" ng-model="senha" class="form-control">
+        <input type="text" placeholder="CPF" ng-model="cpf" class="span4">
+        <input type="password" placeholder="Senha" ng-model="senha" class="span4">
         <label class="checkbox">
           <input type="checkbox"> Lembre-me
         </label>
-        <button class="btn btn-large btn-primary btn-block" type="button" ng-click="logar()">Logar</button>
+          <button type="button" class="btn btn-primary" ng-click="logar()">&nbsp&nbsp&nbsp&nbsp&nbsp Logar &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+          <button type="button" class="btn btn-primary" ng-click="logar()">&nbsp&nbsp&nbsp Lembrar Senha &nbsp&nbsp&nbsp</button>
       </form>
 
     </div> <!-- /container -->

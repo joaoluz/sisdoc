@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel>
+<schema name="public" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<database name="sisdoc" encoding="UTF8" lc-collate="pt_BR" lc-ctype="pt_BR">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<sequence name="usuario_id_usuario_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="usuario">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="529" y="11"/>
+	<column name="id_usuario" not-null="true" default-value="nextval('usuario_id_usuario_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="ds_email">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="nu_cpf">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="password">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="login">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="PK_usuario" type="pk-constr" factor="100" table="public.usuario">
+		<columns names="id_usuario" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="usuario_has_perfil">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="589" y="231"/>
+	<column name="id_usuario" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_perfil" not-null="true">
+		<type name="integer"/>
+	</column>
+</table>
+
+<sequence name="perfil_id_perfil_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="perfil">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="955" y="220"/>
+	<column name="id_perfil" not-null="true" default-value="nextval('perfil_id_perfil_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="ds_cargo">
+		<type name="character varying" length="45"/>
+	</column>
+	<column name="ds_perfil">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="ds_senioridade">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="PK_perfil" type="pk-constr" factor="100" table="public.perfil">
+		<columns names="id_perfil" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="perfil_has_sistema">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1017" y="359"/>
+	<column name="id_perfil" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_sistema" not-null="true">
+		<type name="integer"/>
+	</column>
+</table>
+
+<sequence name="sistema_id_sistema_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="sistema">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1262" y="359"/>
+	<column name="id_sistema" not-null="true" default-value="nextval('sistema_id_sistema_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_sistema" not-null="true">
+		<type name="character varying" length="45"/>
+	</column>
+	<column name="id_iteracao">
+		<type name="integer"/>
+	</column>
+	<column name="sg_iteracao">
+		<type name="character varying" length="15"/>
+	</column>
+	<constraint name="PK_sistema" type="pk-constr" factor="100" table="public.sistema">
+		<columns names="id_sistema" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="iteracao_id_iteracao_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="iteracao">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1068" y="94.4"/>
+	<column name="id_iteracao" not-null="true" default-value="nextval('iteracao_id_iteracao_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_iteracao" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<constraint name="PK_iteracao" type="pk-constr" factor="100" table="public.iteracao">
+		<columns names="id_iteracao" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="fase_id_fase_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="fase">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1397" y="0"/>
+	<column name="id_fase" not-null="true" default-value="nextval('fase_id_fase_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_fase" not-null="true">
+		<type name="character varying" length="50"/>
+	</column>
+	<constraint name="PK_fase" type="pk-constr" factor="100" table="public.fase">
+		<columns names="id_fase" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sistema_has_fase">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1438" y="151"/>
+	<column name="id_sistema" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_fase" not-null="true">
+		<type name="integer"/>
+	</column>
+</table>
+
+<sequence name="modelo_documento_id_modelo_documento_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="modelo_documento">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2075" y="309"/>
+	<column name="id_modelo_documento" not-null="true" default-value="nextval('modelo_documento_id_modelo_documento_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_modelo_documento">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="nu_versao">
+		<type name="integer"/>
+	</column>
+	<constraint name="PK_modelo_documento" type="pk-constr" factor="100" table="public.modelo_documento">
+		<columns names="id_modelo_documento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="documento_id_documento_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="documento">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1577" y="459.4"/>
+	<column name="id_documento" not-null="true" default-value="nextval('documento_id_documento_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_documento" not-null="true">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="nu_versao">
+		<type name="integer"/>
+	</column>
+	<column name="id_cliente">
+		<type name="integer"/>
+	</column>
+	<column name="nu_documento">
+		<type name="integer"/>
+	</column>
+	<column name="id_historico">
+		<type name="integer"/>
+	</column>
+	<column name="id_referencia">
+		<type name="integer"/>
+	</column>
+	<column name="id_mensagem">
+		<type name="integer"/>
+	</column>
+	<column name="id_assinatura">
+		<type name="integer"/>
+	</column>
+	<column name="id_modelo_documento">
+		<type name="integer"/>
+	</column>
+	<constraint name="PK_documento" type="pk-constr" factor="100" table="public.documento">
+		<columns names="id_documento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="cliente_id_cliente_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="cliente">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1211" y="511.8"/>
+	<column name="id_cliente" not-null="true" default-value="nextval('cliente_id_cliente_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_cliente">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="id_sistema">
+		<type name="integer"/>
+	</column>
+	<constraint name="PK_cliente" type="pk-constr" factor="100" table="public.cliente">
+		<columns names="id_cliente" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="capa_id_capa_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="capa">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2163" y="808.8"/>
+	<column name="id_capa" not-null="true" default-value="nextval('capa_id_capa_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_capa">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="id_documento">
+		<type name="integer"/>
+	</column>
+	<column name="nu_versao">
+		<type name="integer"/>
+	</column>
+	<column name="id_historico">
+		<type name="integer"/>
+	</column>
+	<constraint name="PK_capa" type="pk-constr" factor="100" table="public.capa">
+		<columns names="id_capa" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="historico_id_historico_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="historico">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2200" y="628.8"/>
+	<column name="id_historico" not-null="true" default-value="nextval('historico_id_historico_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="nu_versao">
+		<type name="integer"/>
+	</column>
+	<column name="dt_versao">
+		<type name="date"/>
+	</column>
+	<column name="dt_historico">
+		<type name="date"/>
+	</column>
+	<constraint name="PK_historico" type="pk-constr" factor="100" table="public.historico">
+		<columns names="id_historico" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="referencia_id_referencia_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="referencia">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2132" y="498.8"/>
+	<column name="id_referencia" not-null="true" default-value="nextval('referencia_id_referencia_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_referencia">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="dt_versao">
+		<type name="date"/>
+	</column>
+	<constraint name="PK_referencia" type="pk-constr" factor="100" table="public.referencia">
+		<columns names="id_referencia" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="assinatura_id_assinatura_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="assinatura">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1599" y="309"/>
+	<column name="id_assinatura" not-null="true" default-value="nextval('assinatura_id_assinatura_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_assinatura">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="no_cargo">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="no_setor">
+		<type name="character varying" length="50"/>
+	</column>
+	<constraint name="PK_assinatura" type="pk-constr" factor="100" table="public.assinatura">
+		<columns names="id_assinatura" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="mensagem_id_mensagem_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="mensagem">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1594" y="790.2"/>
+	<column name="id_mensagem" not-null="true" default-value="nextval('mensagem_id_mensagem_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="ds_mensagem">
+		<type name="character varying" length="200"/>
+	</column>
+	<column name="co_mensagem">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="id_tipo_mensagem">
+		<type name="integer"/>
+	</column>
+	<constraint name="PK_mensagem" type="pk-constr" factor="100" table="public.mensagem">
+		<columns names="id_mensagem" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tipo_mensagem_id_tipo_mensagem_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="tipo_mensagem">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1591" y="1001.2"/>
+	<column name="id_tipo_mensagem" not-null="true" default-value="nextval('tipo_mensagem_id_tipo_mensagem_seq'::regclass)">
+		<type name="integer"/>
+	</column>
+	<column name="no_tipo_mensagem">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="PK_tipo_mensagem" type="pk-constr" factor="100" table="public.tipo_mensagem">
+		<columns names="id_tipo_mensagem" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="papeis">
+	<schema name="public"/>
+	<position x="209" y="199"/>
+	<column name="id_papel" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="no_papel" not-null="true">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="ds_identificador" not-null="true">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="dt_criacao" not-null="true">
+		<type name="date"/>
+	</column>
+	<constraint name="pk_papeis" type="pk-constr" factor="10" table="public.papeis">
+		<columns names="id_papel" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="usuario_papel">
+	<schema name="public"/>
+	<comment><![CDATA[Tabela que vinculo as permissões ao usuario]]></comment>
+	<position x="210" y="27"/>
+	<column name="id_usuario_papel" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="id_usuario" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="id_papel" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_usuario_papel" type="pk-constr" factor="10" table="public.usuario_papel">
+		<columns names="id_usuario_papel" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="FK_id_usuario" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.usuario" table="public.usuario_has_perfil">
+	<columns names="id_usuario" ref-type="src-columns"/>
+	<columns names="id_usuario" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_perfil" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.perfil" table="public.usuario_has_perfil">
+	<columns names="id_perfil" ref-type="src-columns"/>
+	<columns names="id_perfil" ref-type="dst-columns"/>
+</constraint>
+<constraint name="PK_perfil" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.perfil" table="public.perfil_has_sistema">
+	<columns names="id_perfil" ref-type="src-columns"/>
+	<columns names="id_perfil" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_sistema" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sistema" table="public.perfil_has_sistema">
+	<columns names="id_sistema" ref-type="src-columns"/>
+	<columns names="id_sistema" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_iteracao" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.iteracao" table="public.sistema">
+	<columns names="id_iteracao" ref-type="src-columns"/>
+	<columns names="id_iteracao" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_fase" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.fase" table="public.sistema_has_fase">
+	<columns names="id_fase" ref-type="src-columns"/>
+	<columns names="id_fase" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_sistema" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sistema" table="public.sistema_has_fase">
+	<columns names="id_sistema" ref-type="src-columns"/>
+	<columns names="id_sistema" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_modelo_documento" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.modelo_documento" table="public.documento">
+	<columns names="id_modelo_documento" ref-type="src-columns"/>
+	<columns names="id_modelo_documento" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_cliente" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cliente" table="public.documento">
+	<columns names="id_cliente" ref-type="src-columns"/>
+	<columns names="id_cliente" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_referencia" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.referencia" table="public.documento">
+	<columns names="id_referencia" ref-type="src-columns"/>
+	<columns names="id_referencia" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_assinatura" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.assinatura" table="public.documento">
+	<columns names="id_assinatura" ref-type="src-columns"/>
+	<columns names="id_assinatura" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_historico" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.historico" table="public.documento">
+	<columns names="id_historico" ref-type="src-columns"/>
+	<columns names="id_historico" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_mensagem" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.mensagem" table="public.documento">
+	<columns names="id_mensagem" ref-type="src-columns"/>
+	<columns names="id_mensagem" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_sistema" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sistema" table="public.cliente">
+	<columns names="id_sistema" ref-type="src-columns"/>
+	<columns names="id_sistema" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_documento" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.documento" table="public.capa">
+	<columns names="id_documento" ref-type="src-columns"/>
+	<columns names="id_documento" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_historico" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.historico" table="public.capa">
+	<columns names="id_historico" ref-type="src-columns"/>
+	<columns names="id_historico" ref-type="dst-columns"/>
+</constraint>
+<constraint name="FK_tipo_mensagem" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipo_mensagem" table="public.mensagem">
+	<columns names="id_tipo_mensagem" ref-type="src-columns"/>
+	<columns names="id_tipo_mensagem" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_papel" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.papeis" table="public.usuario_papel">
+	<columns names="id_papel" ref-type="src-columns"/>
+	<columns names="id_papel" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_usuario" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.usuario" table="public.usuario_papel">
+	<columns names="id_usuario" ref-type="src-columns"/>
+	<columns names="id_usuario" ref-type="dst-columns"/>
+</constraint>
+<relationship name="rel_usuario_has_perfil_usuario" type="relfk"
+	 src-table="public.usuario_has_perfil"
+	 dst-table="public.usuario"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_has_perfil_perfil" type="relfk"
+	 src-table="public.usuario_has_perfil"
+	 dst-table="public.perfil"
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="53.9757" y="5.45148"/>
+	</label>
+</relationship>
+
+<relationship name="rel_perfil_has_sistema_perfil" type="relfk"
+	 src-table="public.perfil_has_sistema"
+	 dst-table="public.perfil"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_perfil_has_sistema_sistema" type="relfk"
+	 src-table="public.perfil_has_sistema"
+	 dst-table="public.sistema"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_sistema_iteracao" type="relfk"
+	 src-table="public.sistema"
+	 dst-table="public.iteracao"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_sistema_has_fase_fase" type="relfk"
+	 src-table="public.sistema_has_fase"
+	 dst-table="public.fase"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_sistema_has_fase_sistema" type="relfk"
+	 src-table="public.sistema_has_fase"
+	 dst-table="public.sistema"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_documento_modelo_documento" type="relfk"
+	 src-table="public.documento"
+	 dst-table="public.modelo_documento"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_documento_cliente" type="relfk"
+	 src-table="public.documento"
+	 dst-table="public.cliente"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_documento_referencia" type="relfk"
+	 src-table="public.documento"
+	 dst-table="public.referencia"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_documento_assinatura" type="relfk"
+	 src-table="public.documento"
+	 dst-table="public.assinatura"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_documento_historico" type="relfk"
+	 src-table="public.documento"
+	 dst-table="public.historico"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_documento_mensagem" type="relfk"
+	 src-table="public.documento"
+	 dst-table="public.mensagem"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_cliente_sistema" type="relfk"
+	 src-table="public.cliente"
+	 dst-table="public.sistema"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_capa_documento" type="relfk"
+	 src-table="public.capa"
+	 dst-table="public.documento"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_capa_historico" type="relfk"
+	 src-table="public.capa"
+	 dst-table="public.historico"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_mensagem_tipo_mensagem" type="relfk"
+	 src-table="public.mensagem"
+	 dst-table="public.tipo_mensagem"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_papel_papeis" type="relfk"
+	 src-table="public.usuario_papel"
+	 dst-table="public.papeis"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_papel_usuario" type="relfk"
+	 src-table="public.usuario_papel"
+	 dst-table="public.usuario"
+	 src-required="true" dst-required="true"/>
+
+</dbmodel>

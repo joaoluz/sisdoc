@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entrar no Sistema</title>
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/moduleslayout/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/moduleslayout/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/moduleslayout/css/estilo.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/moduleslayout/css/signin.css') }}" type="text/css" rel="stylesheet" />
+    {% endblock %}
+    {% block javascripts%}
+        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/jquery/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-scenario.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/comum/single_page.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/modulesauthenticate/js/authenticate/login.js') }}"></script>
+
+        <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% endblock %}
+</head>
+
+<body>
+<div class="container">
+
+    <form class="form-signin" action="{{ path("login_check")}}" method="post">
+        <h2 class="form-signin-heading">Entrar no Sistema</h2>
+        {% if error%}
+                Login ou senha inválidos
+        {% endif %}
+        <input type="text" placeholder="CPF" name="_username" class="span4">
+        <input type="password" placeholder="Senha" name="_password" class="span4">
+        <label class="checkbox">
+            <input type="checkbox"> Lembre-me
+        </label>
+        <button type="submit" class="btn btn-primary"">&nbsp&nbsp&nbsp&nbsp&nbsp Logar &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+        <button type="button" class="btn btn-primary" ng-click="logar()">&nbsp&nbsp&nbsp Lembrar Senha &nbsp&nbsp&nbsp</button>
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>

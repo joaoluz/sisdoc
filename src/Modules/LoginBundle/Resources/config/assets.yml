@@ -1,6 +1,0 @@
-groups:
-  # common: assets comuns a public e main
-  ModuleLayouts.common:
-    stylesheets:
-      - bundles/moduleslogin/css/jquery/bootstrap.css
-      - bundles/moduleslogin/css/jquery/bootstrap.min.css

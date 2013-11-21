@@ -27,7 +27,7 @@ twig:
     strict_variables: %kernel.debug%
     globals:
           kernel_debug: %kernel.debug%
-          main_layout: %main_layout%
+          main_layout:  ModulesLayoutBundle::main.html.twig
 
 # Assetic Configuration
 assetic:

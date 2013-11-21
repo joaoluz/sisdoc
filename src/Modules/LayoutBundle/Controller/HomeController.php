@@ -15,7 +15,6 @@ class HomeController extends AbstractController
      */
     public function indexAction()
     {
-
         return array();
     }
 
@@ -26,5 +25,4 @@ class HomeController extends AbstractController
     {
         return $this->redirect($this->generateUrl("Home"));
     }
-
 }

@@ -15,11 +15,17 @@ var SinglePage = {
                  // Pega o link relativo da url
                  var hrefRelativo = this.href.split(Routing.getBaseUrl());
 
-                 // Muda o hash da url para mostrar a rota na url
-                 location.hash = hrefRelativo[1];
 
+                 // Muda o hash da url para mostrar a rota na url
+                 if (hrefRelativo[1] != '/logout'){
+                    location.hash = hrefRelativo[1];
+                 } else {
+                     location.hash = '';
+                 }
                  //concatena a base da url com o link relativo
                  var url = Routing.getBaseUrl() + hrefRelativo[1];
+
+                 url = Routing.getBaseUrl();
 
                  //executa a requisição via ajax
                  SinglePage.executar(url);
@@ -37,16 +43,9 @@ var SinglePage = {
     },
     render:function(html){
         $('#content').html(html)
-    },
-    init:function(){
-//        urlAtual = location.hash;
-//        if (location.) {
-//
-//        }
     }
-
 }
 
 $(document).ready(function(){
-       SinglePage.capturarUrl();
+   SinglePage.capturarUrl();
 });

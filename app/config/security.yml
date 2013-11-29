@@ -15,11 +15,15 @@ security:
     firewalls:
             secured_area:
                 pattern:    ^/
-                anonymous: ~
+                anonymous: true
                 form_login:
                     login_path:  /login
                     check_path:  /login_check
                     default_target_path: /internal
+
+                logout:
+                    path:   /logout
+                    target: /
 
     access_control:
         - { path: ^/internal, roles: ROLE_ADMIN }

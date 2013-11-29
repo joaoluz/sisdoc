@@ -5,3 +5,7 @@ login_path:
 login_check:
     pattern:  /login_check
     defaults: { _controller: ModulesAuthenticateBundle:Authenticate:logar }
+
+path:
+    pattern:  /logout
+    defaults: { _controller: ModulesAuthenticateBundle:Authenticate:logout }

@@ -30,4 +30,8 @@ class AuthenticateController extends AbstractController
     {
     }
 
+    public function logoutAction()
+    {
+    }
+
 }

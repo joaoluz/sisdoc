@@ -5,6 +5,12 @@ modules_authenticate:
             expose: true
 
 
+modules_usuario:
+    resource: "@ModulesUsuarioBundle/Resources/config/routing.yml"
+    prefix:   /
+    options:
+            expose: true
+
 modules_layout:
     resource: "@ModulesLayoutBundle/Controller/"
     type:     annotation

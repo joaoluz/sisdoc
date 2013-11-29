@@ -22,22 +22,25 @@
 </head>
 
 <body>
-<div class="container">
-
-    <form class="form-signin" action="{{ path("login_check")}}" method="post">
-        <h2 class="form-signin-heading">Entrar no Sistema</h2>
+    <div class="container">
         {% if error%}
+            <div class="alert alert-error">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                 Login ou senha inválidos
+            </div>
         {% endif %}
-        <input type="text" placeholder="CPF" name="_username" class="span4">
-        <input type="password" placeholder="Senha" name="_password" class="span4">
-        <label class="checkbox">
-            <input type="checkbox"> Lembre-me
-        </label>
-        <button type="submit" class="btn btn-primary"">&nbsp&nbsp&nbsp&nbsp&nbsp Logar &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-        <button type="button" class="btn btn-primary" ng-click="logar()">&nbsp&nbsp&nbsp Lembrar Senha &nbsp&nbsp&nbsp</button>
-    </form>
 
-</div> <!-- /container -->
+        <form class="form-signin" action="{{ path("login_check")}}" method="post">
+            <h2 class="form-signin-heading">Entrar no Sistema</h2>
+            <input type="text" placeholder="Digite seu login" name="_username" class="span4 required">
+            <input type="password" placeholder="Digite sua senha" name="_password" class="span4 required">
+            <label class="checkbox">
+                <input type="checkbox"> Lembre-me
+            </label>
+            <button type="submit" class="btn btn-primary"">&nbsp&nbsp&nbsp&nbsp&nbsp Logar &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+            <button type="button" class="btn btn-primary" ng-click="logar()">&nbsp&nbsp&nbsp Lembrar Senha &nbsp&nbsp&nbsp</button>
+        </form>
+
+    </div> <!-- /container -->
 </body>
 </html>

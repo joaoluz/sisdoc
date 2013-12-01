@@ -21,11 +21,10 @@ var SinglePage = {
                     location.hash = hrefRelativo[1];
                  } else {
                      location.hash = '';
+                     location.reload();
                  }
                  //concatena a base da url com o link relativo
                  var url = Routing.getBaseUrl() + hrefRelativo[1];
-
-                 url = Routing.getBaseUrl();
 
                  //executa a requisição via ajax
                  SinglePage.executar(url);

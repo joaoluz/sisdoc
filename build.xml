@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sisdoc"
+         default="deploy-phing"
+         basedir="."
+         description="Deploy do sistema sisdoc">
+    <php function="dirname" returnProperty="dir.current">
+        <param value="${phing.file}"/>
+    </php>
+
+    <php function="getenv" returnProperty="currentuser">
+        <param value="USER"/>
+    </php>
+
+    <property name="server.user" value="www-data" override="true"/>
+    <property name="exec.acl" value="n" override="true"/>
+    <property name="dir.root" value="${dir.current}/.." override="true"/>
+    <property name="file.properties" value="${dir.current}/build.properties"/>
+    <property name="exec.chown" value="false" override="true"/>
+    <property name="exec.parameters" value="true" override="true"/>
+    <property name="exec.console" value="true" override="true"/>
+    <property name="env.client" value="base" override="true"/>
+    <property name="exec.production" value="YES" override="true"/>
+
+    <available file="${file.properties}" property="build_properties_exists" value="true"/>
+
+    <if>
+        <istrue value="build_properties_exists"/>
+        <then>
+            <property file="${file.properties}" override="true"/>
+        </then>
+    </if>
+
+    <!-- check required properties -->
+    <if>
+        <not>
+            <and>
+                <isset property="db.driver"/>
+                <isset property="db.host"/>
+                <isset property="db.port"/>
+                <isset property="db.name"/>
+                <isset property="db.username"/>
+                <isset property="db.password"/>
+            </and>
+        </not>
+        <then>
+            <fail message="Propriedades 'db' são requeridas, verifique o arquivo modelo 'build.properties.dist'."/>
+        </then>
+    </if>
+
+    <if>
+        <not>
+            <and>
+                <isset property="mailer.transport"/>
+                <isset property="mailer.host"/>
+                <isset property="mailer.user"/>
+                <isset property="mailer.password"/>
+            </and>
+        </not>
+        <then>
+            <fail message="Propriedades 'mailer' são requeridas, verifique o arquivo modelo 'build.properties.dist'."/>
+        </then>
+    </if>
+
+    <target name="deploy-phing">
+        <input propertyname="exec.production"
+               defaultvalue="no"
+               message="Este deploy é para produção?"
+               validargs="YES, no"
+                />
+
+        <input propertyname="exec.console"
+               defaultvalue="YES"
+               message="Deseja executar console do Symfony?"
+               validargs="YES, no"
+                />
+
+        <input propertyname="exec.acl"
+               defaultvalue="setfacl"
+               message="Informe se o seu Sistema Operacional suporta chmod +a com '+a' ou 'setfacl' se tiver suporte a ACL ou caso não saiba escolha 'n'."
+               validargs="n, +a, setfacl"
+                />
+
+        <if>
+            <equals arg1="exec.acl" arg2="n"/>
+            <then>
+                <input propertyname="exec.chown"
+                       defaultvalue="YES"
+                       message="Deseja executar permissões nas pastas do projeto?"
+                       validargs="YES, no"
+                        />
+            </then>
+        </if>
+
+        <if>
+            <or>
+                <istrue value="${exec.chown}"/>
+                <not>
+                    <equals arg1="exec.acl" arg2="n"/>
+                </not>
+            </or>
+            <then>
+                <input propertyname="server.user"
+                       defaultvalue="www-data"
+                       message="Informe o usuário do servidor Web! Exemplo: www-data."
+                        />
+            </then>
+        </if>
+
+        <phingcall target="all"/>
+    </target>
+
+    <target name="all" description="Execução de todas as targets presentes neste buildfile">
+        <if>
+            <istrue value="${exec.parameters}"/>
+            <then>
+                <phingcall target="parameters"/>
+            </then>
+        </if>
+        <if>
+            <istrue value="${exec.console}"/>
+            <then>
+                <phingcall target="console"/>
+            </then>
+        </if>
+    </target>
+
+    <target name="chown" description="Concede Permissão ao APACHE em pastas">
+        <chown user="${server.user}">
+            <fileset dir="${dir.root}/">
+                <include name="**"/>
+            </fileset>
+        </chown>
+    </target>
+
+    <target name="setfacl" description="Concede Permissão em pastas (cache, logs ...) para usuários do apache e atual">
+        <if>
+            <equals arg1="${exec.acl}" arg2="setfacl"/>
+            <then>
+                <exec command="setfacl -R -m u:${server.user}:rwX -m u:`whoami`:rwX ${dir.root}"/>
+                <exec command="setfacl -dR -m u:${server.user}:rwX -m u:`whoami`:rwX ${dir.root}"/>
+            </then>
+        </if>
+        <if>
+            <equals arg1="${exec.acl}" arg2="+a"/>
+            <then>
+                <exec command="chmod +a '${server.user} allow delete,write,append,file_inherit,directory_inherit' ${dir.root}"/>
+                <exec command="chmod +a '`whoami` allow delete,write,append,file_inherit,directory_inherit' ${dir.root}"/>
+            </then>
+        </if>
+    </target>
+
+    <target name="parameters"
+            description="Gera arquivo parameters.yml baseado no arquivo de propriedade 'build.properties'">
+
+        <copy file="${dir.current}/app/config/parameters.yml.dist" tofile="${dir.current}/app/config/parameters.yml"
+              overwrite="true">
+            <filterchain>
+                <!-- replace enviroment -->
+                <replacetokens begintoken="@" endtoken="@">
+                    <!-- replace DB -->
+                    <token key="DB_DRIVER" value="${db.driver}"/>
+                    <token key="DB_HOST" value="${db.host}"/>
+                    <token key="DB_PORT" value="${db.port}"/>
+                    <token key="DB_USERNAME" value="${db.username}"/>
+                    <token key="DB_PASSWORD" value="${db.password}"/>
+                    <token key="DB_DATABASE" value="${db.name}"/>
+
+                    <!-- replace MAILER -->
+                    <token key="MAILER_TRANSPORT" value="${mailer.transport}"/>
+                    <token key="MAILER_HOST" value="${mailer.host}"/>
+                    <token key="MAILER_USER" value="${mailer.user}"/>
+                    <token key="MAILER_PASSWORD" value="${mailer.password}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+    </target>
+    <target name="bootstrap"
+            description="Geração do bootstrap Sensio">
+        <exec executable="${bin.php}" escape="false" checkreturn="true" passthru="true">
+            <arg value="${dir.current}/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php"/>
+        </exec>
+    </target>
+
+    <target name="console"
+            description="Execução de tarefas do console (geração do bootstrap, limpeza do cache e geração dos assets)">
+        <phingcall target="bootstrap"/>
+        <if>
+            <not>
+                <equals arg1="${exec.acl}" arg2="n"/>
+            </not>
+            <then>
+                <phingcall target="setfacl"/>
+            </then>
+        </if>
+        <if>
+            <istrue value="${exec.chown}"/>
+            <then>
+                <phingcall target="chown"/>
+                <property name="exec.chown"
+                          userproperty="true"
+                          value="false"
+                          override="true"
+                        />
+            </then>
+        </if>
+        <if>
+            <equals arg1="${exec.production}" arg2="YES"/>
+            <then>
+                <echo msg="${dir.current}/app/console cache:clear --env=prod --no-debug"/>
+                <exec executable="${bin.php}" passthru="true" escape="false">
+                    <arg path="${dir.current}/app/console"/>
+                    <arg value="cache:clear"/>
+                    <arg value="--env=prod"/>
+                    <arg value="--no-debug"/>
+                </exec>
+                <echo msg="${dir.current}/app/console assets:install ${dir.root}/web/ --symlink"/>
+                <exec executable="${bin.php}" passthru="true" escape="false">
+                    <arg path="${dir.current}/app/console"/>
+                    <arg value="assets:install"/>
+                    <arg path="${dir.current}/web/"/>
+                    <arg value="--symlink"/>
+                </exec>
+            </then>
+            <else>
+                <echo msg="${dir.current}/app/console cache:clear --no-warmup"/>
+                <exec executable="${bin.php}" passthru="true" escape="false">
+                    <arg path="${dir.current}/app/console"/>
+                    <arg value="cache:clear"/>
+                    <arg value="--no-warmup"/>
+                </exec>
+                <echo msg="${dir.current}/app/console assets:install ${dir.root}/web/ --symlink"/>
+                <exec executable="${bin.php}" passthru="true" escape="false">
+                    <arg path="${dir.current}/app/console"/>
+                    <arg value="assets:install"/>
+                    <arg path="${dir.current}/web/"/>
+                    <arg value="--symlink"/>
+                </exec>
+            </else>
+        </if>
+    </target>
+</project>

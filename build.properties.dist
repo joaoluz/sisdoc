@@ -1,0 +1,15 @@
+; properties db
+db.driver       = pdo_pgsql
+db.host         = 192.168.56.101
+db.port         = 5432
+db.name         = sisdoc
+db.username     = postgres
+db.password     =
+
+; properties mailer
+mailer.transport  = smtp
+mailer.host       = 127.0.0.1
+mailer.user       = null
+mailer.password   = null
+
+bin.php     = /usr/bin/php

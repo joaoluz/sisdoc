@@ -23,7 +23,8 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/jsrouting-bundle": "~1.1",
-        "friendsofsymfony/rest-bundle": "0.12.*"
+        "friendsofsymfony/rest-bundle": "0.12.*",
+        "phing/phing": "2.5.*"
     },
     "scripts": {
         "post-install-cmd": [

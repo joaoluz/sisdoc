@@ -1,0 +1,50 @@
+{% javascripts
+'@ModulesUsuarioBundle/Resources/public/js/usuario/usuario.js' %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts%}
+<div ng-app="usuarioCadastro">
+    <form class="form-horizontal">
+        <div ng-controller="usuarioCtrl">
+            <div class="control-group">
+                <div class="controls">
+                    <h3>Cadastrar Usuário</h3>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Nome: </label>
+                <div class="controls">
+                    <input type="text" ng-model="username" class="span4"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">CPF: </label>
+                <div class="controls">
+                    <input type="text" ng-model="nuCpf" class="span4"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Email: </label>
+                <div class="controls">
+                    <input type="text" ng-model="dsEmail" class="span4"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Senha: </label>
+                <div class="controls">
+                    <input type="text" ng-model="password" class="span4"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Confirme a senha: </label>
+                <div class="controls">
+                    <input type="text" ng-model="confirmePassword" class="span4"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="button" id="cadastrar" ng-click="salvar()" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

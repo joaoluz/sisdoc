@@ -1,5 +1,5 @@
 <?php
-namespace Modules\AuthenticateBundle\Entity;
+namespace Modules\AuthenticationBundle\Entity;
 /**
  * Created by IntelliJ IDEA.
  * User: joao.luz
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  *
  * @ORM\Table(name="papeis")
- * @ORM\Entity(repositoryClass="Modules\AuthenticateBundle\Repository\Papeis")
+ * @ORM\Entity(repositoryClass="Modules\AuthenticationBundle\Repository\Papeis")
  */
 class Papeis
 {

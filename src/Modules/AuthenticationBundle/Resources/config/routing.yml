@@ -1,0 +1,11 @@
+login_path:
+    pattern:  /login
+    defaults: { _controller: ModulesAuthenticationBundle:Authentication:login }
+
+login_check:
+    pattern:  /login_check
+    defaults: { _controller: ModulesAuthenticationBundle:Authentication:logar }
+
+path:
+    pattern:  /logout
+    defaults: { _controller: ModulesAuthenticationBundle:Authentication:logout }

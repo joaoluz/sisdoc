@@ -1,12 +1,15 @@
-/**
- * Created with IntelliJ IDEA.
- * User: joao.luz
- * Date: 21/11/13
- * Time: 09:24
- * To change this template use File | Settings | File Templates.
- */
-$(document).ready(function(){
-    $("#btnCadastroUsuario").click(function(){
-        $("#divUsuario").modal().load();
-    });
-});
+(function(angular,JSON, undefined) {
+    "use strict";
+    var usuario = angular.module("usuarioCadastro",[]);
+
+    usuario.controller("usuarioCtrl",["$http", "$scope", function($http,$scope){
+        console.log($scope);
+        $scope.salvar = function(){
+            $http.post(Routing.generate("modules.usuario.cadastro"),{params:$scope}).success(function(data){
+                if(data.success) {
+                } else {
+                }
+            });
+        }
+    }]);
+})(angular);

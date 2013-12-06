@@ -174,16 +174,9 @@
             </filterchain>
         </copy>
     </target>
-    <target name="bootstrap"
-            description="Geração do bootstrap Sensio">
-        <exec executable="${bin.php}" escape="false" checkreturn="true" passthru="true">
-            <arg value="${dir.current}/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php"/>
-        </exec>
-    </target>
 
     <target name="console"
             description="Execução de tarefas do console (geração do bootstrap, limpeza do cache e geração dos assets)">
-        <phingcall target="bootstrap"/>
         <if>
             <not>
                 <equals arg1="${exec.acl}" arg2="n"/>

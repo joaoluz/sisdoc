@@ -1,5 +1,5 @@
 <?php
-namespace Modules\AuthenticateBundle\Entity;
+namespace Modules\AuthenticationBundle\Entity;
 
 use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  *
  * @ORM\Table(name="usuario")
- * @ORM\Entity(repositoryClass="Modules\AuthenticateBundle\Repository\Usuario")
+ * @ORM\Entity(repositoryClass="Modules\AuthenticationBundle\Repository\Usuario")
  */
 class Usuario implements UserInterface, \Serializable
 {
@@ -59,7 +59,7 @@ class Usuario implements UserInterface, \Serializable
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Modules\AuthenticateBundle\Entity\UsuarioPapel", mappedBy="idUsuario")
+     * @ORM\OneToMany(targetEntity="Modules\AuthenticationBundle\Entity\UsuarioPapel", mappedBy="idUsuario")
      */
     private $usuarioPapel;
 

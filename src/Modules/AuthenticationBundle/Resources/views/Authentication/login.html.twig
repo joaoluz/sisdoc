@@ -8,17 +8,6 @@
         <link href="{{ asset('bundles/moduleslayout/css/estilo.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/moduleslayout/css/signin.css') }}" type="text/css" rel="stylesheet" />
     {% endblock %}
-    {% block javascripts%}
-        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/jquery/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-scenario.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/comum/single_page.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/modulesauthenticate/js/authenticate/login.js') }}"></script>
-
-        <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-
-    {% endblock %}
 </head>
 
 <body>

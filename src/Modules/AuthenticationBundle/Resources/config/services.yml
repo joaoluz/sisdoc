@@ -1,0 +1,7 @@
+parameters:
+    modules_authentication.authenticationService.class: Modules\AuthenticationBundle\Services\AuthenticationService
+
+services:
+    modules_authenticate.authenticate:
+        class: %modules_authentication.authenticationService.class%
+        arguments: ["@service_container","@doctrine.orm.entity_manager"]

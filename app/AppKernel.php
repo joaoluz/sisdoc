@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Modules\LayoutBundle\ModulesLayoutBundle(),
             new Modules\UsuarioBundle\ModulesUsuarioBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new Modules\AuthenticateBundle\ModulesAuthenticateBundle(),
+            new Modules\AuthenticationBundle\ModulesAuthenticationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

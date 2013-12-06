@@ -1,5 +1,5 @@
-modules_authenticate:
-    resource: "@ModulesAuthenticateBundle/Resources/config/routing.yml"
+modules_authentication:
+    resource: "@ModulesAuthenticationBundle/Resources/config/routing.yml"
     prefix:   /
     options:
             expose: true

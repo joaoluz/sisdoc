@@ -1,5 +1,5 @@
 <?php
-namespace Modules\AuthenticateBundle\Entity;
+namespace Modules\AuthenticationBundle\Entity;
 /**
  * Created by IntelliJ IDEA.
  * User: joao.luz
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  *
  * @ORM\Table(name="usuario_papel")
- * @ORM\Entity(repositoryClass="Modules\AuthenticateBundle\Repository\UsuarioPapel")
+ * @ORM\Entity(repositoryClass="Modules\AuthenticationBundle\Repository\UsuarioPapel")
  */
 class UsuarioPapel
 {
@@ -26,7 +26,7 @@ class UsuarioPapel
     private $idUsuarioPapel;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Modules\AuthenticateBundle\Entity\Usuario", inversedBy="idUsuarioPapel")
+     * @ORM\ManyToOne(targetEntity="Modules\AuthenticationBundle\Entity\Usuario", inversedBy="idUsuarioPapel")
      * @ORM\JoinColumns({
      * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario", nullable=false)
      * })
@@ -34,7 +34,7 @@ class UsuarioPapel
     private $idUsuario;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Modules\AuthenticateBundle\Entity\Papeis")
+     * @ORM\ManyToOne(targetEntity="Modules\AuthenticationBundle\Entity\Papeis")
      * @ORM\JoinColumns({
      * @ORM\JoinColumn(name="id_papel", referencedColumnName="id_papel", nullable=false)
      * })

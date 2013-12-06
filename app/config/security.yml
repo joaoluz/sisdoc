@@ -1,6 +1,6 @@
 security:
     encoders:
-        Modules\AuthenticateBundle\Entity\Usuario:
+        Modules\AuthenticationBundle\Entity\Usuario:
             algorithm:   sha1
             iterations: 1
             encode_as_base64: false
@@ -10,7 +10,7 @@ security:
             ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     providers:
         users:
-            entity: { class: ModulesAuthenticateBundle:Usuario, property: login}
+            entity: { class: ModulesAuthenticationBundle:Usuario, property: login}
 
     firewalls:
             secured_area:

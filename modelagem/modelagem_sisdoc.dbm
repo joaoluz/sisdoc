@@ -7,12 +7,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <schema name="public" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
-<database name="sisdoc" encoding="UTF8" lc-collate="pt_BR" lc-ctype="pt_BR">
+<database name="sisdoc" encoding="UTF8" lc-collate="en_US" lc-ctype="en_US">
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 </database>
 
-<sequence name="usuario_id_usuario_seq"
+<sequence name="user_id_user_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -20,11 +20,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="usuario">
+<table name="tb_user">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="529" y="11"/>
-	<column name="id_usuario" not-null="true" default-value="nextval('usuario_id_usuario_seq'::regclass)">
+	<position x="50" y="50"/>
+	<column name="id_user" not-null="true" default-value="nextval('user_id_user_seq'::regclass)">
 		<type name="integer"/>
 	</column>
 	<column name="ds_email">
@@ -37,26 +37,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="50"/>
 	</column>
 	<column name="login">
-		<type name="varchar" length="100"/>
+		<type name="character varying" length="100"/>
 	</column>
-	<constraint name="PK_usuario" type="pk-constr" factor="100" table="public.usuario">
-		<columns names="id_usuario" ref-type="src-columns"/>
+	<column name="no_user">
+		<type name="character varying" length="100"/>
+	</column>
+	<constraint name="PK_user" type="pk-constr" factor="100" table="public.tb_user">
+		<columns names="id_user" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="usuario_has_perfil">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="589" y="231"/>
-	<column name="id_usuario" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="id_perfil" not-null="true">
-		<type name="integer"/>
-	</column>
-</table>
-
-<sequence name="perfil_id_perfil_seq"
+<sequence name="system_id_system_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -64,69 +55,28 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="perfil">
+<table name="tb_system">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="955" y="220"/>
-	<column name="id_perfil" not-null="true" default-value="nextval('perfil_id_perfil_seq'::regclass)">
+	<position x="401" y="50"/>
+	<column name="id_system" not-null="true" default-value="nextval('system_id_system_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="ds_cargo">
+	<column name="no_system" not-null="true">
 		<type name="character varying" length="45"/>
 	</column>
-	<column name="ds_perfil">
-		<type name="character varying" length="50"/>
-	</column>
-	<column name="ds_senioridade">
-		<type name="character varying" length="30"/>
-	</column>
-	<constraint name="PK_perfil" type="pk-constr" factor="100" table="public.perfil">
-		<columns names="id_perfil" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<table name="perfil_has_sistema">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1017" y="359"/>
-	<column name="id_perfil" not-null="true">
+	<column name="id_iteration">
 		<type name="integer"/>
 	</column>
-	<column name="id_sistema" not-null="true">
-		<type name="integer"/>
-	</column>
-</table>
-
-<sequence name="sistema_id_sistema_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="postgres"/>
-</sequence>
-
-<table name="sistema">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1262" y="359"/>
-	<column name="id_sistema" not-null="true" default-value="nextval('sistema_id_sistema_seq'::regclass)">
-		<type name="integer"/>
-	</column>
-	<column name="no_sistema" not-null="true">
-		<type name="character varying" length="45"/>
-	</column>
-	<column name="id_iteracao">
-		<type name="integer"/>
-	</column>
-	<column name="sg_iteracao">
+	<column name="sg_iteration">
 		<type name="character varying" length="15"/>
 	</column>
-	<constraint name="PK_sistema" type="pk-constr" factor="100" table="public.sistema">
-		<columns names="id_sistema" ref-type="src-columns"/>
+	<constraint name="PK_system" type="pk-constr" factor="100" table="public.tb_system">
+		<columns names="id_system" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="iteracao_id_iteracao_seq"
+<sequence name="iteration_id_iteration_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -134,22 +84,22 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="iteracao">
+<table name="tb_iteration">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1068" y="94.4"/>
-	<column name="id_iteracao" not-null="true" default-value="nextval('iteracao_id_iteracao_seq'::regclass)">
+	<position x="758" y="50"/>
+	<column name="id_iteration" not-null="true" default-value="nextval('iteration_id_iteration_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_iteracao" not-null="true">
+	<column name="no_iteration" not-null="true">
 		<type name="character varying" length="50"/>
 	</column>
-	<constraint name="PK_iteracao" type="pk-constr" factor="100" table="public.iteracao">
-		<columns names="id_iteracao" ref-type="src-columns"/>
+	<constraint name="PK_iteration" type="pk-constr" factor="100" table="public.tb_iteration">
+		<columns names="id_iteration" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="fase_id_fase_seq"
+<sequence name="step_id_step_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -157,34 +107,34 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="fase">
+<table name="tb_step">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1397" y="0"/>
-	<column name="id_fase" not-null="true" default-value="nextval('fase_id_fase_seq'::regclass)">
+	<position x="1118" y="50"/>
+	<column name="id_step" not-null="true" default-value="nextval('step_id_step_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_fase" not-null="true">
+	<column name="no_step" not-null="true">
 		<type name="character varying" length="50"/>
 	</column>
-	<constraint name="PK_fase" type="pk-constr" factor="100" table="public.fase">
-		<columns names="id_fase" ref-type="src-columns"/>
+	<constraint name="PK_step" type="pk-constr" factor="100" table="public.tb_step">
+		<columns names="id_step" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="sistema_has_fase">
+<table name="tb_system_has_step">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1438" y="151"/>
-	<column name="id_sistema" not-null="true">
+	<position x="1449" y="50"/>
+	<column name="id_system" not-null="true">
 		<type name="integer"/>
 	</column>
-	<column name="id_fase" not-null="true">
+	<column name="id_step" not-null="true">
 		<type name="integer"/>
 	</column>
 </table>
 
-<sequence name="modelo_documento_id_modelo_documento_seq"
+<sequence name="template_document_id_template_document_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -192,25 +142,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="modelo_documento">
+<table name="tb_template_document">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="2075" y="309"/>
-	<column name="id_modelo_documento" not-null="true" default-value="nextval('modelo_documento_id_modelo_documento_seq'::regclass)">
+	<position x="50" y="207.4"/>
+	<column name="id_template_document" not-null="true" default-value="nextval('template_document_id_template_document_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_modelo_documento">
+	<column name="no_template_document">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="nu_versao">
+	<column name="nu_version">
 		<type name="integer"/>
 	</column>
-	<constraint name="PK_modelo_documento" type="pk-constr" factor="100" table="public.modelo_documento">
-		<columns names="id_modelo_documento" ref-type="src-columns"/>
+	<constraint name="PK_template_document" type="pk-constr" factor="100" table="public.tb_template_document">
+		<columns names="id_template_document" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="documento_id_documento_seq"
+<sequence name="document_id_document_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -218,46 +168,46 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="documento">
+<table name="tb_document">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1577" y="459.4"/>
-	<column name="id_documento" not-null="true" default-value="nextval('documento_id_documento_seq'::regclass)">
+	<position x="486" y="207.4"/>
+	<column name="id_document" not-null="true" default-value="nextval('document_id_document_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_documento" not-null="true">
+	<column name="no_document" not-null="true">
 		<type name="character varying" length="100"/>
 	</column>
-	<column name="nu_versao">
+	<column name="nu_version">
 		<type name="integer"/>
 	</column>
-	<column name="id_cliente">
+	<column name="id_client">
 		<type name="integer"/>
 	</column>
-	<column name="nu_documento">
+	<column name="nu_document">
 		<type name="integer"/>
 	</column>
-	<column name="id_historico">
+	<column name="id_historical">
 		<type name="integer"/>
 	</column>
-	<column name="id_referencia">
+	<column name="id_reference">
 		<type name="integer"/>
 	</column>
-	<column name="id_mensagem">
+	<column name="id_message">
 		<type name="integer"/>
 	</column>
-	<column name="id_assinatura">
+	<column name="id_signing">
 		<type name="integer"/>
 	</column>
-	<column name="id_modelo_documento">
+	<column name="id_template_document">
 		<type name="integer"/>
 	</column>
-	<constraint name="PK_documento" type="pk-constr" factor="100" table="public.documento">
-		<columns names="id_documento" ref-type="src-columns"/>
+	<constraint name="PK_document" type="pk-constr" factor="100" table="public.tb_document">
+		<columns names="id_document" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="cliente_id_cliente_seq"
+<sequence name="client_id_client_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -265,25 +215,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="cliente">
+<table name="tb_client">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1211" y="511.8"/>
-	<column name="id_cliente" not-null="true" default-value="nextval('cliente_id_cliente_seq'::regclass)">
+	<position x="914" y="207.4"/>
+	<column name="id_client" not-null="true" default-value="nextval('client_id_client_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_cliente">
+	<column name="no_client">
 		<type name="character varying" length="100"/>
 	</column>
-	<column name="id_sistema">
+	<column name="id_system">
 		<type name="integer"/>
 	</column>
-	<constraint name="PK_cliente" type="pk-constr" factor="100" table="public.cliente">
-		<columns names="id_cliente" ref-type="src-columns"/>
+	<constraint name="PK_client" type="pk-constr" factor="100" table="public.tb_client">
+		<columns names="id_client" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="capa_id_capa_seq"
+<sequence name="cover_id_cover_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -291,31 +241,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="capa">
+<table name="tb_cover">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="2163" y="808.8"/>
-	<column name="id_capa" not-null="true" default-value="nextval('capa_id_capa_seq'::regclass)">
+	<position x="1264" y="207.4"/>
+	<column name="id_cover" not-null="true" default-value="nextval('cover_id_cover_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_capa">
+	<column name="no_cover">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="id_documento">
+	<column name="id_document">
 		<type name="integer"/>
 	</column>
-	<column name="nu_versao">
+	<column name="nu_version">
 		<type name="integer"/>
 	</column>
-	<column name="id_historico">
+	<column name="id_historical">
 		<type name="integer"/>
 	</column>
-	<constraint name="PK_capa" type="pk-constr" factor="100" table="public.capa">
-		<columns names="id_capa" ref-type="src-columns"/>
+	<constraint name="PK_cover" type="pk-constr" factor="100" table="public.tb_cover">
+		<columns names="id_cover" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="historico_id_historico_seq"
+<sequence name="historical_id_historical_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -323,28 +273,28 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="historico">
+<table name="tb_historical">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="2200" y="628.8"/>
-	<column name="id_historico" not-null="true" default-value="nextval('historico_id_historico_seq'::regclass)">
+	<position x="1625" y="207.4"/>
+	<column name="id_historical" not-null="true" default-value="nextval('historical_id_historical_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="nu_versao">
+	<column name="nu_version">
 		<type name="integer"/>
 	</column>
-	<column name="dt_versao">
+	<column name="dt_version">
 		<type name="date"/>
 	</column>
-	<column name="dt_historico">
+	<column name="dt_historical">
 		<type name="date"/>
 	</column>
-	<constraint name="PK_historico" type="pk-constr" factor="100" table="public.historico">
-		<columns names="id_historico" ref-type="src-columns"/>
+	<constraint name="PK_historical" type="pk-constr" factor="100" table="public.tb_historical">
+		<columns names="id_historical" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="referencia_id_referencia_seq"
+<sequence name="reference_id_reference_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -352,25 +302,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="referencia">
+<table name="tb_reference">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="2132" y="498.8"/>
-	<column name="id_referencia" not-null="true" default-value="nextval('referencia_id_referencia_seq'::regclass)">
+	<position x="50" y="420.8"/>
+	<column name="id_reference" not-null="true" default-value="nextval('reference_id_reference_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_referencia">
+	<column name="no_reference">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="dt_versao">
+	<column name="dt_version">
 		<type name="date"/>
 	</column>
-	<constraint name="PK_referencia" type="pk-constr" factor="100" table="public.referencia">
-		<columns names="id_referencia" ref-type="src-columns"/>
+	<constraint name="PK_reference" type="pk-constr" factor="100" table="public.tb_reference">
+		<columns names="id_reference" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="assinatura_id_assinatura_seq"
+<sequence name="signing_id_signing_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -378,28 +328,28 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="assinatura">
+<table name="tb_signing">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1599" y="309"/>
-	<column name="id_assinatura" not-null="true" default-value="nextval('assinatura_id_assinatura_seq'::regclass)">
+	<position x="416" y="420.8"/>
+	<column name="id_signing" not-null="true" default-value="nextval('signing_id_signing_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_assinatura">
+	<column name="no_signing">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="no_cargo">
+	<column name="no_role">
 		<type name="character varying" length="50"/>
 	</column>
-	<column name="no_setor">
+	<column name="no_sector">
 		<type name="character varying" length="50"/>
 	</column>
-	<constraint name="PK_assinatura" type="pk-constr" factor="100" table="public.assinatura">
-		<columns names="id_assinatura" ref-type="src-columns"/>
+	<constraint name="PK_signing" type="pk-constr" factor="100" table="public.tb_signing">
+		<columns names="id_signing" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="mensagem_id_mensagem_seq"
+<sequence name="message_id_message_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -407,28 +357,28 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="mensagem">
+<table name="tb_message">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1594" y="790.2"/>
-	<column name="id_mensagem" not-null="true" default-value="nextval('mensagem_id_mensagem_seq'::regclass)">
+	<position x="767" y="420.8"/>
+	<column name="id_message" not-null="true" default-value="nextval('message_id_message_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="ds_mensagem">
+	<column name="ds_message">
 		<type name="character varying" length="200"/>
 	</column>
-	<column name="co_mensagem">
+	<column name="co_message">
 		<type name="character varying" length="20"/>
 	</column>
-	<column name="id_tipo_mensagem">
+	<column name="id_type_message">
 		<type name="integer"/>
 	</column>
-	<constraint name="PK_mensagem" type="pk-constr" factor="100" table="public.mensagem">
-		<columns names="id_mensagem" ref-type="src-columns"/>
+	<constraint name="PK_message" type="pk-constr" factor="100" table="public.tb_message">
+		<columns names="id_message" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<sequence name="tipo_mensagem_id_tipo_mensagem_seq"
+<sequence name="type_message_id_type_message_seq"
 	 start="1" increment="1"
 	 min-value="1" max-value="9223372036854775807"
 	 cache="1" cycle="false">
@@ -436,251 +386,225 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<role name="postgres"/>
 </sequence>
 
-<table name="tipo_mensagem">
+<table name="tb_type_message">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1591" y="1001.2"/>
-	<column name="id_tipo_mensagem" not-null="true" default-value="nextval('tipo_mensagem_id_tipo_mensagem_seq'::regclass)">
+	<position x="1160" y="420.8"/>
+	<column name="id_type_message" not-null="true" default-value="nextval('type_message_id_type_message_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="no_tipo_mensagem">
+	<column name="no_type_message">
 		<type name="character varying" length="30"/>
 	</column>
-	<constraint name="PK_tipo_mensagem" type="pk-constr" factor="100" table="public.tipo_mensagem">
-		<columns names="id_tipo_mensagem" ref-type="src-columns"/>
+	<constraint name="PK_type_message" type="pk-constr" factor="100" table="public.tb_type_message">
+		<columns names="id_type_message" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="papeis">
+<sequence name="tb_roles_id_role_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
 	<schema name="public"/>
-	<position x="209" y="199"/>
-	<column name="id_papel" not-null="true">
-		<type name="serial"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="tb_roles">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1558" y="420.8"/>
+	<column name="id_role" not-null="true" default-value="nextval('tb_roles_id_role_seq'::regclass)">
+		<type name="integer"/>
 	</column>
-	<column name="no_papel" not-null="true">
-		<type name="varchar" length="30"/>
+	<column name="no_role" not-null="true">
+		<type name="character varying" length="30"/>
 	</column>
-	<column name="ds_identificador" not-null="true">
-		<type name="varchar" length="30"/>
+	<column name="ds_identifier" not-null="true">
+		<type name="character varying" length="30"/>
 	</column>
-	<column name="dt_criacao" not-null="true">
+	<column name="dt_create" not-null="true">
 		<type name="date"/>
 	</column>
-	<constraint name="pk_papeis" type="pk-constr" factor="10" table="public.papeis">
-		<columns names="id_papel" ref-type="src-columns"/>
+	<constraint name="pk_roles" type="pk-constr" factor="100" table="public.tb_roles">
+		<columns names="id_role" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="usuario_papel">
+<sequence name="tb_user_role_id_user_role_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
 	<schema name="public"/>
-	<comment><![CDATA[Tabela que vinculo as permissões ao usuario]]></comment>
-	<position x="210" y="27"/>
-	<column name="id_usuario_papel" not-null="true">
-		<type name="serial"/>
-	</column>
-	<column name="id_usuario" not-null="true">
+	<role name="postgres"/>
+</sequence>
+
+<table name="tb_user_role">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela que vinculo as permissões ao user]]></comment>
+	<position x="50" y="550.2"/>
+	<column name="id_user_role" not-null="true" default-value="nextval('tb_user_role_id_user_role_seq'::regclass)">
 		<type name="integer"/>
 	</column>
-	<column name="id_papel" not-null="true">
+	<column name="id_user" not-null="true">
 		<type name="integer"/>
 	</column>
-	<constraint name="pk_usuario_papel" type="pk-constr" factor="10" table="public.usuario_papel">
-		<columns names="id_usuario_papel" ref-type="src-columns"/>
+	<column name="id_role" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_user_role" type="pk-constr" factor="100" table="public.tb_user_role">
+		<columns names="id_user_role" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<constraint name="FK_id_usuario" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.usuario" table="public.usuario_has_perfil">
-	<columns names="id_usuario" ref-type="src-columns"/>
-	<columns names="id_usuario" ref-type="dst-columns"/>
+<constraint name="FK_iteration" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_iteration" table="public.tb_system">
+	<columns names="id_iteration" ref-type="src-columns"/>
+	<columns names="id_iteration" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_perfil" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.perfil" table="public.usuario_has_perfil">
-	<columns names="id_perfil" ref-type="src-columns"/>
-	<columns names="id_perfil" ref-type="dst-columns"/>
+<constraint name="FK_step" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_step" table="public.tb_system_has_step">
+	<columns names="id_step" ref-type="src-columns"/>
+	<columns names="id_step" ref-type="dst-columns"/>
 </constraint>
-<constraint name="PK_perfil" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.perfil" table="public.perfil_has_sistema">
-	<columns names="id_perfil" ref-type="src-columns"/>
-	<columns names="id_perfil" ref-type="dst-columns"/>
+<constraint name="FK_system" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_system" table="public.tb_system_has_step">
+	<columns names="id_system" ref-type="src-columns"/>
+	<columns names="id_system" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_sistema" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sistema" table="public.perfil_has_sistema">
-	<columns names="id_sistema" ref-type="src-columns"/>
-	<columns names="id_sistema" ref-type="dst-columns"/>
+<constraint name="FK_template_document" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_template_document" table="public.tb_document">
+	<columns names="id_template_document" ref-type="src-columns"/>
+	<columns names="id_template_document" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_iteracao" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.iteracao" table="public.sistema">
-	<columns names="id_iteracao" ref-type="src-columns"/>
-	<columns names="id_iteracao" ref-type="dst-columns"/>
+<constraint name="FK_client" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_client" table="public.tb_document">
+	<columns names="id_client" ref-type="src-columns"/>
+	<columns names="id_client" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_fase" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.fase" table="public.sistema_has_fase">
-	<columns names="id_fase" ref-type="src-columns"/>
-	<columns names="id_fase" ref-type="dst-columns"/>
+<constraint name="FK_reference" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_reference" table="public.tb_document">
+	<columns names="id_reference" ref-type="src-columns"/>
+	<columns names="id_reference" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_sistema" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sistema" table="public.sistema_has_fase">
-	<columns names="id_sistema" ref-type="src-columns"/>
-	<columns names="id_sistema" ref-type="dst-columns"/>
+<constraint name="FK_signing" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_signing" table="public.tb_document">
+	<columns names="id_signing" ref-type="src-columns"/>
+	<columns names="id_signing" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_modelo_documento" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.modelo_documento" table="public.documento">
-	<columns names="id_modelo_documento" ref-type="src-columns"/>
-	<columns names="id_modelo_documento" ref-type="dst-columns"/>
+<constraint name="FK_historical" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_historical" table="public.tb_document">
+	<columns names="id_historical" ref-type="src-columns"/>
+	<columns names="id_historical" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_cliente" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cliente" table="public.documento">
-	<columns names="id_cliente" ref-type="src-columns"/>
-	<columns names="id_cliente" ref-type="dst-columns"/>
+<constraint name="FK_message" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_message" table="public.tb_document">
+	<columns names="id_message" ref-type="src-columns"/>
+	<columns names="id_message" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_referencia" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.referencia" table="public.documento">
-	<columns names="id_referencia" ref-type="src-columns"/>
-	<columns names="id_referencia" ref-type="dst-columns"/>
+<constraint name="FK_system" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_system" table="public.tb_client">
+	<columns names="id_system" ref-type="src-columns"/>
+	<columns names="id_system" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_assinatura" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.assinatura" table="public.documento">
-	<columns names="id_assinatura" ref-type="src-columns"/>
-	<columns names="id_assinatura" ref-type="dst-columns"/>
+<constraint name="FK_document" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_document" table="public.tb_cover">
+	<columns names="id_document" ref-type="src-columns"/>
+	<columns names="id_document" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_historico" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.historico" table="public.documento">
-	<columns names="id_historico" ref-type="src-columns"/>
-	<columns names="id_historico" ref-type="dst-columns"/>
+<constraint name="FK_historical" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_historical" table="public.tb_cover">
+	<columns names="id_historical" ref-type="src-columns"/>
+	<columns names="id_historical" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_mensagem" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.mensagem" table="public.documento">
-	<columns names="id_mensagem" ref-type="src-columns"/>
-	<columns names="id_mensagem" ref-type="dst-columns"/>
+<constraint name="FK_type_message" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_type_message" table="public.tb_message">
+	<columns names="id_type_message" ref-type="src-columns"/>
+	<columns names="id_type_message" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_sistema" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sistema" table="public.cliente">
-	<columns names="id_sistema" ref-type="src-columns"/>
-	<columns names="id_sistema" ref-type="dst-columns"/>
+<constraint name="fk_role" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_roles" table="public.tb_user_role">
+	<columns names="id_role" ref-type="src-columns"/>
+	<columns names="id_role" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_documento" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.documento" table="public.capa">
-	<columns names="id_documento" ref-type="src-columns"/>
-	<columns names="id_documento" ref-type="dst-columns"/>
+<constraint name="fk_user" type="fk-constr"	 comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tb_user" table="public.tb_user_role">
+	<columns names="id_user" ref-type="src-columns"/>
+	<columns names="id_user" ref-type="dst-columns"/>
 </constraint>
-<constraint name="FK_historico" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.historico" table="public.capa">
-	<columns names="id_historico" ref-type="src-columns"/>
-	<columns names="id_historico" ref-type="dst-columns"/>
-</constraint>
-<constraint name="FK_tipo_mensagem" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipo_mensagem" table="public.mensagem">
-	<columns names="id_tipo_mensagem" ref-type="src-columns"/>
-	<columns names="id_tipo_mensagem" ref-type="dst-columns"/>
-</constraint>
-<constraint name="fk_papel" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.papeis" table="public.usuario_papel">
-	<columns names="id_papel" ref-type="src-columns"/>
-	<columns names="id_papel" ref-type="dst-columns"/>
-</constraint>
-<constraint name="fk_usuario" type="fk-constr"	 comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.usuario" table="public.usuario_papel">
-	<columns names="id_usuario" ref-type="src-columns"/>
-	<columns names="id_usuario" ref-type="dst-columns"/>
-</constraint>
-<relationship name="rel_usuario_has_perfil_usuario" type="relfk"
-	 src-table="public.usuario_has_perfil"
-	 dst-table="public.usuario"
+<relationship name="rel_tb_system_tb_iteration" type="relfk"
+	 src-table="public.tb_system"
+	 dst-table="public.tb_iteration"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_usuario_has_perfil_perfil" type="relfk"
-	 src-table="public.usuario_has_perfil"
-	 dst-table="public.perfil"
-	 src-required="true" dst-required="true">
-	<label ref-type="name-label">
-		<position x="53.9757" y="5.45148"/>
-	</label>
-</relationship>
-
-<relationship name="rel_perfil_has_sistema_perfil" type="relfk"
-	 src-table="public.perfil_has_sistema"
-	 dst-table="public.perfil"
+<relationship name="rel_tb_system_has_step_tb_step" type="relfk"
+	 src-table="public.tb_system_has_step"
+	 dst-table="public.tb_step"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_perfil_has_sistema_sistema" type="relfk"
-	 src-table="public.perfil_has_sistema"
-	 dst-table="public.sistema"
+<relationship name="rel_tb_system_has_step_tb_system" type="relfk"
+	 src-table="public.tb_system_has_step"
+	 dst-table="public.tb_system"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_sistema_iteracao" type="relfk"
-	 src-table="public.sistema"
-	 dst-table="public.iteracao"
+<relationship name="rel_tb_document_tb_template_document" type="relfk"
+	 src-table="public.tb_document"
+	 dst-table="public.tb_template_document"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_sistema_has_fase_fase" type="relfk"
-	 src-table="public.sistema_has_fase"
-	 dst-table="public.fase"
+<relationship name="rel_tb_document_tb_client" type="relfk"
+	 src-table="public.tb_document"
+	 dst-table="public.tb_client"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_sistema_has_fase_sistema" type="relfk"
-	 src-table="public.sistema_has_fase"
-	 dst-table="public.sistema"
+<relationship name="rel_tb_document_tb_reference" type="relfk"
+	 src-table="public.tb_document"
+	 dst-table="public.tb_reference"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_documento_modelo_documento" type="relfk"
-	 src-table="public.documento"
-	 dst-table="public.modelo_documento"
+<relationship name="rel_tb_document_tb_signing" type="relfk"
+	 src-table="public.tb_document"
+	 dst-table="public.tb_signing"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_documento_cliente" type="relfk"
-	 src-table="public.documento"
-	 dst-table="public.cliente"
+<relationship name="rel_tb_document_tb_historical" type="relfk"
+	 src-table="public.tb_document"
+	 dst-table="public.tb_historical"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_documento_referencia" type="relfk"
-	 src-table="public.documento"
-	 dst-table="public.referencia"
+<relationship name="rel_tb_document_tb_message" type="relfk"
+	 src-table="public.tb_document"
+	 dst-table="public.tb_message"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_documento_assinatura" type="relfk"
-	 src-table="public.documento"
-	 dst-table="public.assinatura"
+<relationship name="rel_tb_client_tb_system" type="relfk"
+	 src-table="public.tb_client"
+	 dst-table="public.tb_system"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_documento_historico" type="relfk"
-	 src-table="public.documento"
-	 dst-table="public.historico"
+<relationship name="rel_tb_cover_tb_document" type="relfk"
+	 src-table="public.tb_cover"
+	 dst-table="public.tb_document"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_documento_mensagem" type="relfk"
-	 src-table="public.documento"
-	 dst-table="public.mensagem"
+<relationship name="rel_tb_cover_tb_historical" type="relfk"
+	 src-table="public.tb_cover"
+	 dst-table="public.tb_historical"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_cliente_sistema" type="relfk"
-	 src-table="public.cliente"
-	 dst-table="public.sistema"
+<relationship name="rel_tb_message_tb_type_message" type="relfk"
+	 src-table="public.tb_message"
+	 dst-table="public.tb_type_message"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_capa_documento" type="relfk"
-	 src-table="public.capa"
-	 dst-table="public.documento"
+<relationship name="rel_tb_user_role_tb_roles" type="relfk"
+	 src-table="public.tb_user_role"
+	 dst-table="public.tb_roles"
 	 src-required="true" dst-required="true"/>
 
-<relationship name="rel_capa_historico" type="relfk"
-	 src-table="public.capa"
-	 dst-table="public.historico"
-	 src-required="true" dst-required="true"/>
-
-<relationship name="rel_mensagem_tipo_mensagem" type="relfk"
-	 src-table="public.mensagem"
-	 dst-table="public.tipo_mensagem"
-	 src-required="true" dst-required="true"/>
-
-<relationship name="rel_usuario_papel_papeis" type="relfk"
-	 src-table="public.usuario_papel"
-	 dst-table="public.papeis"
-	 src-required="true" dst-required="true"/>
-
-<relationship name="rel_usuario_papel_usuario" type="relfk"
-	 src-table="public.usuario_papel"
-	 dst-table="public.usuario"
+<relationship name="rel_tb_user_role_tb_user" type="relfk"
+	 src-table="public.tb_user_role"
+	 dst-table="public.tb_user"
 	 src-required="true" dst-required="true"/>
 
 </dbmodel>

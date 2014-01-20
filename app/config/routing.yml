@@ -6,7 +6,7 @@ modules_authentication:
 
 
 modules_usuario:
-    resource: "@ModulesUsuarioBundle/Resources/config/routing.yml"
+    resource: "@ModulesUserBundle/Resources/config/routing.yml"
     prefix:   /
     options:
             expose: true

@@ -1,0 +1,3 @@
+modules.user.new:
+    pattern:  /user/new
+    defaults: { _controller: ModulesUserBundle:User:new }

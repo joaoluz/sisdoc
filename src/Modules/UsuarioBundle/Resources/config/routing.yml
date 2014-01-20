@@ -1,3 +1,0 @@
-modules.usuario.cadastro:
-    pattern:  /usuario/cadastro
-    defaults: { _controller: ModulesUsuarioBundle:Usuario:cadastro }

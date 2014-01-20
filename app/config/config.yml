@@ -33,7 +33,11 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: true
-    bundles:        ['ModulesAuthenticationBundle','ModulesUsuarioBundle','ModulesLayoutBundle']
+    bundles:
+        - ModulesAuthenticationBundle
+        - ModulesUserBundle
+        - ModulesLayoutBundle
+        - FOSJsRoutingBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

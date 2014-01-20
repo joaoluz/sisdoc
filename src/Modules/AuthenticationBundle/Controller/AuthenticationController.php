@@ -26,7 +26,7 @@ class AuthenticationController extends AbstractController
         );
     }
 
-    public function logarAction()
+    public function loginCheckAction()
     {
     }
 

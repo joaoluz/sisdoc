@@ -22,4 +22,9 @@ abstract class AbstractService
     {
         return $this->entityManager->getRepository($entityName);
     }
+
+    public function getConnection()
+    {
+        return $this->entityManager->getConnection();
+    }
 }

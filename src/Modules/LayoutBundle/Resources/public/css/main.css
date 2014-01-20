@@ -1,0 +1,12 @@
+#loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -110px;
+    margin-top: -40px;
+}
+
+.content-loading {
+    cursor: wait;
+    opacity: 0;
+}

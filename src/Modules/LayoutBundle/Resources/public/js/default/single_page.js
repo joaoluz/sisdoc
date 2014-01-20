@@ -12,7 +12,15 @@ var SinglePage = {
                  //Retira o comportamento padrão do link para não ser executado a requisição
                  e.preventDefault();
 
-                 var url = SinglePage.getUrl(this.href);
+                 // Pega o link relativo da url
+                 var href = SinglePage.getUrlRelativa(this.href);
+
+                 //altera url para simular reload na tela
+                 SinglePage.alterarUrl(href);
+
+                 //captura url
+                 var url = SinglePage.getUrlCompleta(href[1]);
+
                  //executa a requisição via ajax
                  SinglePage.executar(url);
 
@@ -20,10 +28,19 @@ var SinglePage = {
              });
         });
     },
-    getUrl:function(href){
-        // Pega o link relativo da url
-        var hrefRelativo = href.split(Routing.getBaseUrl());
 
+    getUrlCompleta:function(href){
+        //concatena a base da url com o link relativo
+        var url = Routing.getBaseUrl();
+
+        if (href !== undefined) {
+            url = Routing.getBaseUrl() + href;
+        }
+
+        return url;
+    },
+
+    alterarUrl:function(hrefRelativo){
         // Muda o hash da url para mostrar a rota na url
         if (hrefRelativo[1] != '/logout'){
             location.hash = hrefRelativo[1];
@@ -31,11 +48,16 @@ var SinglePage = {
             location.hash = '';
             location.reload();
         }
-        //concatena a base da url com o link relativo
-        var url = Routing.getBaseUrl() + hrefRelativo[1];
-
-        return url;
     },
+
+    getUrlRelativa:function(href){
+        return href.split(Routing.getBaseUrl());
+    },
+
+    getUrlRecarregar:function(href){
+        return href[1].split('/internal/#');
+    },
+
     executar:function(url){
         //Recebe a url e executa o ajax
         $.ajax(url).done(function(result){
@@ -49,6 +71,26 @@ var SinglePage = {
         $('#content').html(html)
     }
 }
-$(document).ready(function(){
+
+$(document).ajaxSend(function(){
+    //habilita mensagem de carregendo
+    $('#container-geral').addClass('content-loading');
+    $('#loading').removeClass('hide');
+    //desabilita links dos menus para não efetuarem redirecionemntos
+    $('.brand menu').attr('disabled',true);
+}).ajaxComplete(function(){
+    //habilita links dos menus
+    $('.brand menu').removeAttr('disabled',true);
+    //desabilita mensagem de carregendo
+    console.log($('#loading'));
+    $('#loading').hide();
+    $('#container-geral').removeClass('content-loading');
+}).ready(function(){
+    $(window).load(function(){
+        var href = SinglePage.getUrlRelativa(location.href);
+        var urlRecarregar = SinglePage.getUrlRecarregar(href);
+        var url = SinglePage.getUrlCompleta(urlRecarregar[1]);
+        SinglePage.executar(url);
+    });
     SinglePage.capturarUrl();
 });

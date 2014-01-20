@@ -5,12 +5,14 @@
 
         {% block stylesheets %}
             <link href="{{ asset('bundles/moduleslayout/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('bundles/moduleslayout/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('bundles/moduleslayout/css/estilo.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('bundles/moduleslayout/css/main.css') }}" type="text/css" rel="stylesheet" />
         {% endblock %}
         {% block javascripts%}
             <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/jquery/jquery.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-cookies.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-resource.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-sanitize.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/autocomplete/jquery.autocomplete.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/default/single_page.js') }}"></script>
@@ -25,24 +27,31 @@
             <div class="navbar-inner">
                 <div class="container">
                     <div class="nav-collapse collapse">
-                        <a class="brand menu" href="{{path("modules.usuario.cadastro")}}">Usuario</a>
+                        <a class="brand menu" href="{{path("modules.user.new")}}">Usuario</a>
                         <a class="brand menu" href="#">Documento</a>
                         <a class="brand menu" href="{{ path("path")}}">Sair</a>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
         </div>
-        <br><br><br>
-        <div class="container" id="content">
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span1">
-                    </div>
-                    <div class="spa10">
-                        {% block content %}{% endblock %}
+        <br><br>
+        <div id="container-geral">
+            <div class="container" id="content">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span1">
+                        </div>
+                        <div class="spa10">
+                            {% block content %}{% endblock %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div><!-- /.container -->
+            </div><!-- /.container -->
+        </div>
+        {% block Loading %}
+        <div id="loading">
+            <img src="{{ asset('bundles/moduleslayout/imagens/carregando.gif') }}">
+        </div>
+        {% endblock %}
     </body>
 </html>

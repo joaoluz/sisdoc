@@ -12,9 +12,7 @@ class UserController extends AbstractController
 {
     public function newAction()
     {
-        return $this->render(
-            'ModulesUserBundle:User:new.html.twig',array()
-        );
+        return new Response();
     }
 
     public function save()

@@ -1,7 +1,7 @@
-#parameters:
-#    modules.user.user.class: Modules\UsuarioBundle\Services\User
-#
-#services:
-#    modules_usuario.usuario.service:
-#        class: %modules_usuario.usuario.class%
-#        arguments: ["@service_container","@doctrine.orm.entity_manager"]
+parameters:
+    modules.user.user.class: Modules\UserBundle\Services\User
+
+services:
+    modules_user.user.service:
+        class: %modules_user.user.class%
+        arguments: ["@service_container","@doctrine.orm.entity_manager"]

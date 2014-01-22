@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" ng-app="Main">
     <head> {% block head %}
         <title>SisDoc</title>
 
@@ -9,20 +9,22 @@
         {% endblock %}
         {% block javascripts%}
             <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/jquery/jquery.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-cookies.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-resource.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular/angular-sanitize.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular-1.2.9/angular.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular-1.2.9/angular-cookies.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular-1.2.9/angular-resource.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular-1.2.9/angular-sanitize.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/angular-1.2.9/angular-route.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/autocomplete/jquery.autocomplete.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/default/single_page.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/moduleslayout/js/main/main.js') }}"></script>
 
             <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
         {% endblock %}
         {% endblock %}
     </head>
-    <body>
+    <body ng-controller="MainController">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
@@ -41,8 +43,8 @@
                     <div class="row-fluid">
                         <div class="span1">
                         </div>
-                        <div class="spa10">
-                            {% block content %}{% endblock %}
+                        <div class="spa10" ng-view="">
+
                         </div>
                     </div>
                 </div>

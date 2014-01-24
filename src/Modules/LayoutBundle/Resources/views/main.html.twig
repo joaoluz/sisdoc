@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="Main">
-    <head> {% block head %}
-        <title>SisDoc</title>
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <title>Sistema</title>
 
         {% block stylesheets %}
             <link href="{{ asset('bundles/moduleslayout/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
@@ -50,10 +52,5 @@
                 </div>
             </div><!-- /.container -->
         </div>
-        {% block Loading %}
-        <div id="loading">
-            <img src="{{ asset('bundles/moduleslayout/imagens/carregando.gif') }}">
-        </div>
-        {% endblock %}
     </body>
 </html>

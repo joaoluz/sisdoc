@@ -5,9 +5,11 @@
     var $main = angular.module("Main",["ngRoute"]);
 
     $main.config(function($routeProvider,$locationProvider){
+        $routeProvider.when("/",{templateUrl:"bundles/moduleslayouts/templates/index.html"});
         $routeProvider.when("/user/new",{module:"UserNew",controller:"UserController",templateUrl:"bundles/modulesuser/templates/new.html"});
     });
-    $main.run(["$rootScope","$document",function($rootScope){
+
+    $main.run(["$rootScope","$document","$location",function($rootScope,$location){
         $rootScope.$on("$routeChangeStart",function(){
            SinglePage.loadAll();
         });
@@ -18,5 +20,4 @@
     $main.controller('MainController',["$scope",function($scope){
         $scope.joao = 'joao';
     }]);
-
 })(angular)

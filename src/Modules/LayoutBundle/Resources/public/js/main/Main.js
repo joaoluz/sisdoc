@@ -5,7 +5,7 @@
     var $main = angular.module("Main",["ngRoute"]);
 
     $main.config(function($routeProvider,$locationProvider){
-        $routeProvider.when("/",{templateUrl:"bundles/moduleslayouts/templates/index.html"});
+        $routeProvider.when("/",{templateUrl:"bundles/moduleslayout/templates/index.html"});
         $routeProvider.when("/user/new",{module:"UserNew",controller:"UserController",templateUrl:"bundles/modulesuser/templates/new.html"});
     });
 

@@ -66,3 +66,6 @@ vendor/*
 # arquivos SO
 .DS_Store
 
+# commitar apenas composer json
+.composer.lock
+

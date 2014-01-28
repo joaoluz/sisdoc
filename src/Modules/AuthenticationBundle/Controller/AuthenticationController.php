@@ -5,13 +5,13 @@ namespace Modules\AuthenticationBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use abstraction\controller\AbstractController;
 use Symfony\Component\Security\Core\SecurityContext;
 class AuthenticationController extends AbstractController
 {
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        $request = $this->getRequest();
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } else {

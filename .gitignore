@@ -8,36 +8,14 @@ nbproject
 ## arquivos privados de IDE
 *.sublime-workspace
 *.iws
-.idea/checkstyle-idea.xml
-.idea/tasks.xml
-.idea/workspace.xml
-.idea/modules.xml
-.idea/.name
-.idea/copyright
-.idea/dictionaries
-.idea/dataSources.ids
-.idea/dataSources.xml
-.idea/uiDesigner.xml
-.idea/deployment.xml
-.idea/frameworkRootSettings.xml
-# idealmente o módulo do IntelliJ seria incluso, mas sua interação
-# com Composer é um tanto problemática
-*.iml
-.idea/modules.xml
-# compiler.xml contém configurações de compilador Java, desnecessárias aqui
-.idea/compiler.xml
-# misc.xml contém configurações de plug-ins menores e bem voláteis
-.idea/misc.xml
-# deployment.xml contém configurações da VM de teste local
-.idea/deployment.xml
+.idea
 
 # arquivos de configuração
 /build.properties
 app/config/parameters.yml
 
 # arquivos gerados pelo Symfony
-app/bootstrap*
-app/bundles_map.php
+app/bootstrap.php.cache
 app/phpunit.xml
 app/cache/*
 app/logs/*

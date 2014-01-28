@@ -12,6 +12,8 @@ var SinglePage = {
                  //Retira o comportamento padrão do link para não ser executado a requisição
                  e.preventDefault();
 
+                 SinglePage.setBaseUrl();
+
                  // Pega o link relativo da url
                  var href = SinglePage.getUrlRelativa(this.href);
 
@@ -26,11 +28,16 @@ var SinglePage = {
     alterarUrl:function(hrefRelativo){
         // Muda o hash da url para mostrar a rota na url
         if (hrefRelativo[1] != '/logout'){
+            console.log(hrefRelativo[1]);
             location.hash = hrefRelativo[1];
         } else {
             location.hash = '';
             location.reload();
         }
+    },
+
+    setBaseUrl:function(){
+        Routing.setBaseUrl(location.hostname);
     },
 
     getUrlRelativa:function(href){

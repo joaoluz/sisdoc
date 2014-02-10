@@ -3,8 +3,48 @@ Sisdoc - Sistema Gerenciador de Documentos
 
 			Montagem de Ambiente
 
-1) Instale a chave que dará permissão de commit  
+1) Instalação do vagrant e configuração
+-----------------------------------
+
+    1º Os arquivos de instalação no ubuntu estão disponiveis na pasta do dropbox
+    2º Execute no caso do ubuntu - sudo chmod -R 777 virtualbox-4.3_4.3.6.deb vagrant_1.4.3_x86_64.deb para dar permissão de execução
+    2º Execute no caso do ubuntu - sudo dpkg -i virtualbox-4.3_4.3.6.deb
+    3º Execute no caso do ubuntu - sudo dpkg -i vagrant_1.4.3_x86_64.deb
+    4º Após a intalação basta entrar na pasta onde se encontra o arquivo Vagrantfile e executar - vagrant up.
+    5º Para acessar sua vm execute - vagrant ssh
+    Obs: usuario/senha = vagrant
+    6º Configure o postgresql
+        1º execute sudo vim /etc/postgresql/9.1/main/pg_hba.conf
+        2º procure a linha 92 com o comando - digite :92
+        3º na linha abaixo essa insira - host    all             all             192.168.56.1/24         trust - do jeito que esta ai mesmo.
+        4º salve e feche
+    7º Configure o virtual host
+        1º execute sudo vim /etc/apache2/sites-available/default
+        2º logo após
+            <Directory /var/www/>
+                    Options Indexes FollowSymLinks MultiViews
+                    AllowOverride All
+                    Order allow,deny
+                    allow from all
+            </Directory>
+
+            Insira
+
+            DocumentRoot /var/www/sistema
+            <Directory /var/www/sistema>
+                    Options Indexes FollowSymLinks MultiViews
+                    AllowOverride All
+                    Order allow,deny
+                    allow from all
+            </Directory>
+        3º Salve e feche
+
+    Obs: Daqui para frente tudo é dentro da vm
+
+2) Instale a chave que dará permissão de commit
 ----------------------------------
+    1º instale o git execute - sudo aptitude install git-core
+
 	1º execute - ssh-keygen -t rsa -C "your_email@example.com"
 
 	2º execute - sudo apt-get install xclip
@@ -15,12 +55,12 @@ Sisdoc - Sistema Gerenciador de Documentos
 
 	5º Para testar execute - ssh -T git@github.com
 
-2) Baixe o repositório
+3) Baixe o repositório
 -------------------------------------
 
-	execute: git clone git@github.com:fabricateste/sisdoc.git
+	execute: git clone https://github.com/joaoluz/sistema.git
 
-3) Instalando as dependencias 
+4) Instalando as dependencias
 --------------------------------
 
 Após o clone entre na pasta do sistema e execute:
@@ -31,7 +71,7 @@ De permissão aos caches
 
 sudo chmod -R 777 app/cache app/logs
 
-4) Teste se o commit esta funcionando 
+5) Teste se o commit esta funcionando
 -------------------------------
 Altere algum arquivo e execute:
 

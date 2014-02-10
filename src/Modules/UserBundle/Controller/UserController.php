@@ -17,6 +17,7 @@ class UserController extends AbstractController
 
     public function save()
     {
+        die('joao');
         $params = $this->getAllParams();
 
         var_dump($params);die;

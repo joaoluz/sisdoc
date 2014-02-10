@@ -28,7 +28,6 @@ var SinglePage = {
     alterarUrl:function(hrefRelativo){
         // Muda o hash da url para mostrar a rota na url
         if (hrefRelativo[1] != '/logout'){
-            console.log(hrefRelativo[1]);
             location.hash = hrefRelativo[1];
         } else {
             location.hash = '';
@@ -41,7 +40,7 @@ var SinglePage = {
     },
 
     getUrlRelativa:function(href){
-        return href.split(Routing.getBaseUrl());
+        return href.split(Routing.getBaseUrl()+'/web');
     },
 
     loadAll:function(){

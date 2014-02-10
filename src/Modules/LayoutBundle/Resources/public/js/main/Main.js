@@ -2,7 +2,7 @@
  * Created by joao.luz on 20/01/14.
  */
 (function(angular,undefined){
-    var $main = angular.module("Main",["ngRoute"]);
+    var $main = angular.module("Main",["ngRoute","UserNew"]);
 
     $main.config(function($routeProvider,$locationProvider){
         $routeProvider.when("/",{templateUrl:"bundles/moduleslayout/templates/index.html"});
@@ -18,6 +18,5 @@
         });
     }]);
     $main.controller('MainController',["$scope",function($scope){
-        $scope.joao = 'joao';
     }]);
 })(angular)

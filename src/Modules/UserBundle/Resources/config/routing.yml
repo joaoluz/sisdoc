@@ -1,3 +1,7 @@
 modules.user.new:
     pattern:  /user/new
     defaults: { _controller: ModulesUserBundle:User:new }
+
+modules.user.save:
+    pattern:  /user/save
+    defaults: { _controller: ModulesUserBundle:User:save }

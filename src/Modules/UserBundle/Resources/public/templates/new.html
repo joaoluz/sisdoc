@@ -1,10 +1,9 @@
-<script src="bundles/modulesuser/js/user/user.js"></script>
-<div ng-app="UserNew">
+<div module-app="UserNew" ng-cloak ng-controller="UserController">
     <form class="form-horizontal">
-        <div ng-controller="UserController">
+        <div>
             <div class="control-group">
                 <div class="controls">
-                    <h3>Cadastrar Usuário</h3>
+                    <h3>Cadastrar Usuário {{username}}</h3>
                 </div>
             </div>
             <div class="control-group">
@@ -39,7 +38,7 @@
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <button type="button" id="cadastrar" ng-click="salvar()" class="btn btn-primary">Cadastrar</button>
+                    <button type="button" ng-click="save()" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         </div>

@@ -12,8 +12,6 @@ var SinglePage = {
                  //Retira o comportamento padrão do link para não ser executado a requisição
                  e.preventDefault();
 
-                 SinglePage.setBaseUrl();
-
                  // Pega o link relativo da url
                  var href = SinglePage.getUrlRelativa(this.href);
 
@@ -35,12 +33,8 @@ var SinglePage = {
         }
     },
 
-    setBaseUrl:function(){
-        Routing.setBaseUrl(location.hostname);
-    },
-
     getUrlRelativa:function(href){
-        return href.split(Routing.getBaseUrl()+'/web');
+        return href.split(location.hostname +'/web');
     },
 
     loadAll:function(){

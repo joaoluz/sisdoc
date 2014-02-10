@@ -4,7 +4,6 @@ modules_authentication:
     options:
             expose: true
 
-
 modules_user:
     resource: "@ModulesUserBundle/Resources/config/routing.yml"
     prefix:   /

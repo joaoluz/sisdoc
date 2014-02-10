@@ -1,4 +1,4 @@
-Sisdoc - Sistema Gerenciador de Documentos
+Sistema - Sistema de Aprendizado de João Batista e Filipe Brito
 ========================
 
 			Montagem de Ambiente

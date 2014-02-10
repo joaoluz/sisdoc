@@ -85,7 +85,7 @@ git push origin master - para enviar os arquivos commitados para o servidor do g
 
 6) Acessando o sistema
 
-Após esses passos seu sistema estara apto a ser acessado, lembre-se a url é 192.168.56.115/web
+Após esses passos seu sistema estara apto a ser acessado, lembre-se a url é 192.168.56.115/sistema/web
 
 
 

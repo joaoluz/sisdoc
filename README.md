@@ -1,4 +1,4 @@
-Sistema - Sistema de Aprendizado de João Batista e Filipe Brito
+Sistema de Aprendizado de João Batista e Filipe Brito
 ========================
 
 			Montagem de Ambiente

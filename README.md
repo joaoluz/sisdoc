@@ -67,9 +67,7 @@ Após o clone entre na pasta do sistema e execute:
 
 php bin/composer.phar install --dev
 
-De permissão aos caches
-
-sudo chmod -R 777 app/cache app/logs
+Depois execute o phing -- basta digitar phing na raiz do projeto
 
 5) Teste se o commit esta funcionando
 -------------------------------

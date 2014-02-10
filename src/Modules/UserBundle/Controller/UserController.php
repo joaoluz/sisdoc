@@ -8,17 +8,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @Route("/user")
+ */
 class UserController extends AbstractController
 {
+    /**
+     * @Route("/new", name="modules.user.new", options={"expose"=true})
+     */
     public function newAction()
     {
         return new Response();
     }
 
+    /**
+     * @Route("/save", name="modules.user.save", options={"expose"=true})
+     */
     public function save()
     {
-        die('joao');
-        $params = $this->getAllParams();
+        $params = $this->getRequestJson();
 
         var_dump($params);die;
     }

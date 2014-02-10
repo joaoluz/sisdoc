@@ -5,10 +5,9 @@ modules_authentication:
             expose: true
 
 modules_user:
-    resource: "@ModulesUserBundle/Resources/config/routing.yml"
+    resource: "@ModulesUserBundle/Controller/"
+    type:     annotation
     prefix:   /
-    options:
-            expose: true
 
 modules_layout:
     resource: "@ModulesLayoutBundle/Controller/"

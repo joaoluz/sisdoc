@@ -27,7 +27,7 @@ abstract class AbstractController extends Controller
      */
     protected function getRequestJson ()
     {
-        $content = $this->getRequest()->getContent();
+        $content = $this->get("request")->getContent();
         return $content ? json_decode($content, true) : null;
     }
 }

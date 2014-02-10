@@ -1,14 +1,14 @@
 var SinglePage = {
     capturarUrl:function(){
         //captura todos os links
-        var links = $('a,button');
+        var links = $('a');
 
         //itera todos os links
         links.each(function(i,link){
              // Pega o link corrente
-             el = $(link);
+             elem = $(link);
              //quando clicar no link
-             el.on('click',function(e){
+             elem.on('click',function(e){
                  //Retira o comportamento padrão do link para não ser executado a requisição
                  e.preventDefault();
 

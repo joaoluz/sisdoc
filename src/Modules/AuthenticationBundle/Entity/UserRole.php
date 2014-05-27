@@ -1,5 +1,6 @@
 <?php
 namespace Modules\AuthenticationBundle\Entity;
+
 /**
  * Created by IntelliJ IDEA.
  * User: joao.luz

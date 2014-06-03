@@ -2,7 +2,7 @@
 db.driver       = pdo_pgsql
 db.host         = 192.168.56.101
 db.port         = 5432
-db.name         = sisdoc
+db.name         = sistema
 db.username     = postgres
 db.password     =
 

@@ -24,7 +24,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/jsrouting-bundle": "~1.1",
         "friendsofsymfony/rest-bundle": "0.12.*",
-        "phing/phing": "2.5.*"
+        "phing/phing": "2.7.*",
+        "jms/security-extra-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

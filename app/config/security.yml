@@ -1,4 +1,6 @@
 security:
+    acl:
+        connection: default
     encoders:
         Modules\AuthenticationBundle\Entity\User:
             algorithm:   sha1
